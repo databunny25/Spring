@@ -32,13 +32,13 @@ public class EmpMapperTest {
 		System.out.println("삭제건수=" + result);
 	}
 	
-	//@Test
+	@Test
 	public void 사원등록() {
 		//vo 객체 생성		
 		EmpVO vo = EmpVO.builder()
 						//.employeeId(301)
 						.lastName("aaaa")
-						.email("springhaha@gmail.com")
+						.email("springlogtest2@gmail.com")
 						.hireDate(new Date(2024-03-13))
 						.jobId("IT_PROG")
 						.build();
@@ -50,7 +50,7 @@ public class EmpMapperTest {
 		System.out.println("등록건수=" + result);
 	}
 	
-	@Test
+	//@Test
 	public void 사원전체조회() {
 		EmpVO vo = new EmpVO();
 		SearchVO svo = new SearchVO();

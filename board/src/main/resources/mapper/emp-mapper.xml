@@ -44,7 +44,7 @@
 				,DEPARTMENT_ID
  		  FROM employees e
 		  <include refid="condition"></include> 			
- 		 ORDER BY first_name
+ 		 ORDER BY EMPLOYEE_ID DESC
  			
  	) a where rownum <![CDATA[<=]]> #{svo.end} ) b where rn >= #{svo.start}
 	</select>
@@ -70,7 +70,8 @@
 								,JOB_ID
 								<if test="salary!=null">,SALARY</if>
 								,MANAGER_ID
-								,DEPARTMENT_ID )
+								,DEPARTMENT_ID
+								,PHOTO )
 		values (
 				#{employeeId}
 				, #{firstName}
@@ -81,6 +82,7 @@
 				<if test="salary!=null">, #{salary}</if>
 				, #{managerId}
 				, #{departmentId}
+				, #{photo}
 				)	
 	</insert>
 	
@@ -98,4 +100,12 @@
 		 where e.department_id is not null
 	  GROUP BY e.department_id, department_name
 	</select>
+	
+	<update id="updateEmp" parameterType="EmpVO">
+		update employees
+		set last_name=#{title}, 
+			hire_date = #{content},
+			
+		where board_no = #{boardNo}
+	</update>
 </mapper>

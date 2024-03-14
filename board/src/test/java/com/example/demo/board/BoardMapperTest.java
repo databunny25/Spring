@@ -15,7 +15,7 @@ public class BoardMapperTest {
 	@Test
 	public void 게시글검색() {
 //		BoardVO vo = new BoardVO();
-		SearchVO svo = new SearchVO();
+		SearchbVO svo = new SearchbVO();
 		BoardVO vo = BoardVO.builder()
 							.writer("홍길동")
 							.build();			
