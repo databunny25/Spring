@@ -51,12 +51,21 @@ public class Empcontroller {
 	}
 	
 	//수정페이지 이동
-	@GetMapping("/emp/update")
-	public void update(@ModelAttribute("emp") EmpVO vo) {
+	@GetMapping("/emp/update/{employeeId}")
+	public String update(Model model, @PathVariable int employeeId) {
+		EmpVO emp = mapper.getEmpInfo(employeeId);
+		model.addAttribute("emp", emp);
+		return "/emp/update";
+	}
 		
+	//수정처리
+	@GetMapping("/emp/updateEmp")
+	public String updateEmp(EmpVO vo) {
+		mapper.updateEmp(vo);
+		return "redirect:/emp/list";
 	}
 	
-	//수정처리
+	
 	
 	
 	

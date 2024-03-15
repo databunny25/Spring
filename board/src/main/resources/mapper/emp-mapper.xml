@@ -103,9 +103,9 @@
 	
 	<update id="updateEmp" parameterType="EmpVO">
 		update employees
-		set last_name=#{title}, 
-			hire_date = #{content},
-			
-		where board_no = #{boardNo}
+		set last_name=#{lastName}, 
+			hire_date = #{hireDate},
+			email = #{email}			
+		where employee_id = #{employeeId}
 	</update>
 </mapper>

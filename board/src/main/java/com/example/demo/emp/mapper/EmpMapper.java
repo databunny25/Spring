@@ -18,6 +18,9 @@ public interface EmpMapper {
 	
 	//삭제
 	int deleteEmp(int employeeId);
+	//수정
+	int updateEmp(EmpVO empVO);
+	
 	List<Map<String,Object>> getStat();
 	
 	@Select("select count(*) from employees")
