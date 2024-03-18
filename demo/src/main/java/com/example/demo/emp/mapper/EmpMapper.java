@@ -20,6 +20,8 @@ public interface EmpMapper {
 	int deleteEmp(int employeeId);
 	List<Map<String,Object>> getStat();
 	
-	@Select("select count(*) from employees")
-	public int getCount();
+	//@Select("select count(*) from employees")
+	public long getCount(EmpVO vo, SearchVO svo);
+	
+	
 }

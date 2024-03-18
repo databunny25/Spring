@@ -41,7 +41,7 @@ public class Empcontroller {
 		
 		vo.setPhoto(photoFile.getOriginalFilename());
 		System.out.println("사원등록: " + vo);
-		mapper.insertEmp(vo);		
+		mapper.insertEmp(vo);
 		return "redirect:/emp/list";
 	}
 	//등록페이지 이동
