@@ -10,8 +10,8 @@ import com.example.demo.board.ReplyVO;
 public interface ReplyMapper {
 
 	int insertReply(ReplyVO replyVO);
-	public ReplyVO read(int rno); //특정 댓글 읽기
-	public int delete (int rno); //댓글 삭제
-	public int update(ReplyVO vo);
-	public List<ReplyVO> getReplyList();
+	public ReplyVO readReply(int rno); //특정 댓글 읽기
+	public int deleteReply (int rno); //댓글 삭제
+	public int updateReply(ReplyVO vo);
+	public List<ReplyVO> getListWithPaging();
 }

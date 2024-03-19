@@ -1,6 +1,7 @@
 package com.example.demo.emp.web;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import com.example.demo.common.Paging;
 import com.example.demo.emp.EmpVO;
 import com.example.demo.emp.SearchVO;
 import com.example.demo.emp.mapper.EmpMapper;
+import com.example.demo.emp.service.EmpService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,8 +30,7 @@ import lombok.RequiredArgsConstructor;
 @Controller // 컨테이너 빈 등록(컨트롤러는 컴포넌트 상속받아서 만들어졌으므로 이것이 가능) + 사용자 요청 처리 할 수 있는 커맨드 핸들러 변환
 public class Empcontroller {
 		
-	final EmpMapper mapper; //의존성 주입 (DI dependency injection)
-	
+	final EmpService empService; //의존성 주입 (DI dependency injection)	
 	
 	@PostMapping("/insert")
 	public ModelAndView insert(@ModelAttribute("emp") EmpVO vo) {
@@ -61,7 +62,7 @@ public class Empcontroller {
 	
 	@GetMapping("/info/{empId}")
 	public String info(@PathVariable int empId, Model model) {
-		model.addAttribute("emp", mapper.getEmpInfo(empId));
+		model.addAttribute("emp", empService.getEmpInfo(empId));
 		return "empInfo";
 	}
 	
@@ -73,20 +74,20 @@ public class Empcontroller {
 	
 	@GetMapping("/delete")
 	public String delete(int employeeId, String name) {
-		System.out.println(employeeId + " " + name);
-		return "index"; // /templates/index.html
+		empService.deleteEmp(employeeId);
+		return "redirect:empList"; // /templates/index.html
 	}
 	
-	@RequestMapping("/ajaxEmp")
-	@ResponseBody
-	public List<EmpVO> ajaxEmp() {
-		return mapper.getEmpList(null, null);
-	}
-	
-	@RequestMapping("/empResult") //url주소 (뷰 페이지명 아님)
-	public String result() {
-		return "result";
-	}
+//	@RequestMapping("/ajaxEmp")
+//	@ResponseBody
+//	public List<EmpVO> ajaxEmp() {
+//		return mapper.getEmpList(null, null);
+//	}
+//	
+//	@RequestMapping("/empResult") //url주소 (뷰 페이지명 아님)
+//	public String result() {
+//		return "result";
+//	}
 	
 	@PostMapping("/insert3")
 	public String insert3(EmpVO vo, RedirectAttributes rttr) {
@@ -109,11 +110,14 @@ public class Empcontroller {
 		pvo.setPageSize(3); //페이지번호
 		svo.setStart(pvo.getFirst());
 		svo.setEnd(pvo.getLast());
-		pvo.setTotalRecord(mapper.getCount(vo, svo));
+		
+		Map<String, Object> map = empService.getEmpList(vo, svo);
+		
+		pvo.setTotalRecord((Long)map.get("count"));
 		model.addAttribute("paging", pvo);
 		
 		//목록조회
-       model.addAttribute("empList", mapper.getEmpList(vo,svo));
+       model.addAttribute("empList", map.get("data"));
        return "empList";
     }
 }

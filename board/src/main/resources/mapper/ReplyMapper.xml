@@ -17,18 +17,22 @@
 				)
 	</insert>
 	
-	<select id="read" resultType="ReplyVO">
+	<select id="readReply" resultType="ReplyVO">
 		select * from tbl_reply where rno = #{rno}
 	</select>
 	
-	<delete id="delete">
+	<delete id="deleteReply">
 		delete from tbl_reply where rno=#{rno}
 	</delete>
 	
-	<update id="update">
+	<update id="updateReply">
 		update tbl_reply
 		set reply = #{reply},
 			updatedate = sysdate
 		where rno = #{rno}
 	</update>
+	
+	<select id="getReplyList" parameterType="int" resultType="ReplyVO">
+		select * from tbl_reply where board_no = #{boardNo}
+	</select>
 </mapper>
