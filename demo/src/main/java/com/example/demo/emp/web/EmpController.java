@@ -28,22 +28,29 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller // 컨테이너 빈 등록(컨트롤러는 컴포넌트 상속받아서 만들어졌으므로 이것이 가능) + 사용자 요청 처리 할 수 있는 커맨드 핸들러 변환
-public class Empcontroller {
+public class EmpController {
 		
 	final EmpService empService; //의존성 주입 (DI dependency injection)	
+	
+	
+	@GetMapping("/insert")
+	public void insert() {}
 	
 	@PostMapping("/insert")
 	public ModelAndView insert(@ModelAttribute("emp") EmpVO vo) {
 		System.out.println(vo);
-		//mapper.insertEmp(vo);
+		empService.insertEmp(vo);
 		//커맨드 객체는 model에 추가
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("result");
+		mv.setViewName("/home"); //뷰 이름을 적어줘야한다. templates안에 있는 뷰 이름~~~
 		mv.addObject("insertResult", "success");
-		mv.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+		//mv.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 		return mv;
 	}
+	
+
+	
 	
 //	@PostMapping("/insert")
 //	public String insert(@ModelAttribute("emp") EmpVO vo, Model model) {
@@ -102,6 +109,8 @@ public class Empcontroller {
 		return new ResponseEntity<>(vo, HttpStatus.OK);
 	}
 
+
+	
 	@RequestMapping("/empList")
     public String empList(Model model, EmpVO vo, SearchVO svo, Paging pvo){
 		

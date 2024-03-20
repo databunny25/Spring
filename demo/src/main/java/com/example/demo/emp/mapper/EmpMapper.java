@@ -22,6 +22,4 @@ public interface EmpMapper {
 	
 	//@Select("select count(*) from employees")
 	public long getCount(EmpVO vo, SearchVO svo);
-	
-	
 }
