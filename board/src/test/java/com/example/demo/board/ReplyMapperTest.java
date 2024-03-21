@@ -30,27 +30,27 @@ public class ReplyMapperTest {
 		});
 	}
 	
-	//@Test
-	public void testRead() { //특정 댓글 조회
-		int targerRno = 1;
-		ReplyVO vo = mapper.read(targerRno);
-		System.out.println(vo);
-	}
-	
-	//@Test
-	public void testDelete() {
-		int targetRno = 3;
-		int result = mapper.delete(targetRno);
-		System.out.println("삭제건수= " + result);
-	}
-	
-	@Test
-	public void testUpdate() {
-		int targetRno = 4;
-		ReplyVO vo = mapper.read(targetRno);
-		vo.setReply("댓글수정");
-		int count = mapper.update(vo);
-		System.out.println("댓글수정건수 : " + count);
-	}
+//	//@Test
+//	public void testRead() { //특정 댓글 조회
+//		int targerRno = 1;
+//		ReplyVO vo = mapper.read(targerRno);
+//		System.out.println(vo);
+//	}
+//	
+//	//@Test
+//	public void testDelete() {
+//		int targetRno = 3;
+//		int result = mapper.delete(targetRno);
+//		System.out.println("삭제건수= " + result);
+//	}
+//	
+//	@Test
+//	public void testUpdate() {
+//		int targetRno = 4;
+//		ReplyVO vo = mapper.read(targetRno);
+//		vo.setReply("댓글수정");
+//		int count = mapper.update(vo);
+//		System.out.println("댓글수정건수 : " + count);
+//	}
 	
 }
