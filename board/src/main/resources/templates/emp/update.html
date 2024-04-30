@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>사원수정</h2>
+	<form action="/updateEmp" method="post">
+		lastName<input name="lastName" th:value="${emp.employeeId}">
+		hireDate<input name="hireDate" th:value="${emp.hireDate}">
+		jobId<select name="jobId">
+			<option value="IT_PROG">Programmer</option>
+			<option value="ST_MAN">Stock Manager</option>
+		</select>
+		이메일<input name="email" th:value="${emp.email}">
+		<a th:href="@{/emp/updateEmp}">등록</a>
+	</form>
+</body>
+
+</html>
